@@ -10,11 +10,17 @@
  *   (opacity 0.3 + 1px blur) in a staggered wave.
  * - Hovering/focusing a card lights up matching chips with a 2px underline.
  * - A polite aria-live region announces the filter state.
+ * - Cards column: default 10-item cap with fade mask + "N more." expand toggle.
+ *   When any filter is active, bypass cap and show all matching items.
  */
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
-import { SKILLS, EXPERIENCES, PROJECTS, type Experience, type Project } from "@/lib/data";
+import { SKILLS, EXPERIENCES, type Experience } from "@/lib/data";
+import {
+  PROJECTS as GALLERY_PROJECTS,
+  type Project as GalleryProject,
+} from "@/data/projects";
 
 type Item = { id: string; title: string; sub: string; blurb: string; skills: string[] };
 
@@ -26,19 +32,28 @@ const toItem = (e: Experience): Item => ({
   skills: e.skills,
 });
 
-const toProjectItem = (p: Project): Item => ({
-  id: `proj-${p.id}`,
-  title: p.title,
-  sub: p.dates,
-  blurb: p.blurb,
-  skills: p.skills,
+const toGalleryProjectItem = (p: GalleryProject): Item => ({
+  id: `proj-${p.slug}`,
+  title: p.name,
+  sub: p.categories.join(" · "),
+  blurb: p.description,
+  skills: p.techTags,
 });
+
+// Featured projects first, then archive — matches the gallery's own ordering.
+const orderedProjects = [
+  ...GALLERY_PROJECTS.filter((p) => p.featured).sort(
+    (a, b) => (a.featuredSlot ?? 99) - (b.featuredSlot ?? 99),
+  ),
+  ...GALLERY_PROJECTS.filter((p) => !p.featured),
+];
 
 const ALL_ITEMS: Item[] = [
   ...EXPERIENCES.map(toItem),
-  ...PROJECTS.map(toProjectItem),
+  ...orderedProjects.map(toGalleryProjectItem),
 ];
 
+const CAP = 10;
 const GROUPS = ["Languages", "Frameworks", "Tools"] as const;
 
 export function SkillGraph() {
@@ -46,6 +61,7 @@ export function SkillGraph() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [cardSkills, setCardSkills] = useState<string[] | null>(null);
   const [chipIdx, setChipIdx] = useState(0);
+  const [expanded, setExpanded] = useState(false);
   const chipsRef = useRef<HTMLButtonElement[]>([]);
 
   const toggle = useCallback((name: string) => {
@@ -74,6 +90,17 @@ export function SkillGraph() {
       [...activeKeys].every((k) => it.skills.includes(k)),
     ).length;
   }, [activeKeys]);
+
+  // Determine which items to render in the cards column.
+  const filterActive = activeKeys.size > 0;
+  const visibleItems = filterActive
+    ? ALL_ITEMS
+    : expanded
+    ? ALL_ITEMS
+    : ALL_ITEMS.slice(0, CAP);
+
+  const showToggle = !filterActive && ALL_ITEMS.length > CAP;
+  const remaining = ALL_ITEMS.length - CAP;
 
   // Keyboard: roving tabindex over the chip group.
   const onChipKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, idx: number) => {
@@ -181,49 +208,86 @@ export function SkillGraph() {
       {/* Cards column */}
       <div>
         <h3 className="display-h3">Where I&apos;ve used them</h3>
-        <ul className="mt-4 space-y-3">
-          {ALL_ITEMS.map((it, idx) => {
-            const matches =
-              activeKeys.size === 0 ||
-              [...activeKeys].every((k) => it.skills.includes(k));
-            return (
-              <li
-                key={it.id}
-                onMouseEnter={() => setCardSkills(it.skills)}
-                onMouseLeave={() => setCardSkills(null)}
-                onFocus={() => setCardSkills(it.skills)}
-                onBlur={() => setCardSkills(null)}
-                tabIndex={0}
-                className={cn(
-                  "rounded-md border border-[var(--border)] bg-[var(--surface)] p-5 transition-[opacity,filter] duration-200",
-                  !matches && "opacity-30 blur-[1px] saturate-50",
-                )}
-                style={{
-                  transitionDelay: matches ? "0ms" : `${idx * 30}ms`,
-                }}
-              >
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h4 className="display-h3">{it.title}</h4>
-                  <p className="caption text-[var(--muted)]">{it.sub}</p>
-                </div>
-                <p className="body mt-2 measure">{it.blurb}</p>
-                <ul className="mt-3 flex flex-wrap gap-1.5">
-                  {it.skills.map((sk) => (
-                    <li
-                      key={sk}
-                      className={cn(
-                        "caption rounded-full border border-[var(--border)] bg-[var(--bg)] px-2 py-0.5",
-                        activeKeys.has(sk) && "border-[var(--fg)] bg-[var(--accent)] text-[var(--fg)]",
-                      )}
-                    >
-                      {sk}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="relative mt-4">
+          <ul className="space-y-3">
+            {visibleItems.map((it, idx) => {
+              const matches =
+                activeKeys.size === 0 ||
+                [...activeKeys].every((k) => it.skills.includes(k));
+
+              // Stagger reveal for items beyond cap when expanding
+              const isExpansionItem = !filterActive && expanded && idx >= CAP;
+              const revealDelay = isExpansionItem ? (idx - CAP) * 30 : 0;
+
+              return (
+                <li
+                  key={it.id}
+                  onMouseEnter={() => setCardSkills(it.skills)}
+                  onMouseLeave={() => setCardSkills(null)}
+                  onFocus={() => setCardSkills(it.skills)}
+                  onBlur={() => setCardSkills(null)}
+                  tabIndex={0}
+                  className={cn(
+                    "rounded-md border border-[var(--border)] bg-[var(--surface)] p-5 transition-[opacity,filter] duration-200",
+                    !matches && "opacity-30 blur-[1px] saturate-50",
+                    isExpansionItem && "transition-[opacity,filter,transform]",
+                  )}
+                  style={{
+                    transitionDelay: matches ? `${revealDelay}ms` : `${idx * 30}ms`,
+                    transitionDuration: isExpansionItem ? "220ms" : undefined,
+                    transitionTimingFunction: isExpansionItem
+                      ? "cubic-bezier(0.22, 1, 0.36, 1)"
+                      : undefined,
+                  }}
+                >
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h4 className="display-h3">{it.title}</h4>
+                    <p className="caption text-[var(--muted)]">{it.sub}</p>
+                  </div>
+                  <p className="body mt-2 measure">{it.blurb}</p>
+                  <ul className="mt-3 flex flex-wrap gap-1.5">
+                    {it.skills.map((sk) => (
+                      <li
+                        key={sk}
+                        className={cn(
+                          "caption rounded-full border border-[var(--border)] bg-[var(--bg)] px-2 py-0.5",
+                          activeKeys.has(sk) && "border-[var(--fg)] bg-[var(--accent)] text-[var(--fg)]",
+                        )}
+                      >
+                        {sk}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Fade mask when collapsed */}
+          {showToggle && !expanded && (
+            <div
+              className="pointer-events-none absolute bottom-0 left-0 right-0"
+              style={{
+                height: "96px",
+                background: "linear-gradient(to bottom, transparent, var(--bg))",
+              }}
+              aria-hidden
+            />
+          )}
+        </div>
+
+        {/* Expand / collapse toggle */}
+        {showToggle && (
+          <button
+            type="button"
+            aria-expanded={expanded}
+            onClick={() => setExpanded((v) => !v)}
+            className="ui mt-3 transition-colors"
+            style={{ color: "var(--accent-strong)", fontWeight: 500 }}
+          >
+            {expanded ? "Show less." : `${remaining} more.`}
+          </button>
+        )}
       </div>
     </div>
   );

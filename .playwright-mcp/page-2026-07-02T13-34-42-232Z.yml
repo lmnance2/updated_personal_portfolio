@@ -1,0 +1,562 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - link "Liam Nance" [ref=f2e4] [cursor=pointer]:
+        - /url: /
+      - navigation "Main" [ref=f2e5]:
+        - link "Home" [ref=f2e6] [cursor=pointer]:
+          - /url: /
+        - link "Professional" [ref=f2e7] [cursor=pointer]:
+          - /url: /professional
+          - text: Professional
+        - link "Personal" [ref=f2e9] [cursor=pointer]:
+          - /url: /personal
+        - link "Resume" [ref=f2e10] [cursor=pointer]:
+          - /url: /Liam_Nance_Resume.pdf
+          - text: Resume
+          - img [ref=f2e11]
+  - main [ref=f2e14]:
+    - navigation "Professional sections" [ref=f2e15]:
+      - generic [ref=f2e16]:
+        - link "Skills" [ref=f2e18] [cursor=pointer]:
+          - /url: "#skills"
+          - text: Skills
+        - generic [ref=f2e20]:
+          - generic [ref=f2e21]: ·
+          - link "Experience" [ref=f2e22] [cursor=pointer]:
+            - /url: "#experience"
+        - generic [ref=f2e23]:
+          - generic [ref=f2e24]: ·
+          - link "Projects" [ref=f2e25] [cursor=pointer]:
+            - /url: "#projects"
+        - generic [ref=f2e26]:
+          - generic [ref=f2e27]: ·
+          - link "Education" [ref=f2e28] [cursor=pointer]:
+            - /url: "#education"
+        - generic [ref=f2e29]:
+          - generic [ref=f2e30]: ·
+          - link "Contact" [ref=f2e31] [cursor=pointer]:
+            - /url: "#contact"
+    - generic [ref=f2e32]:
+      - heading "Professional." [level=1] [ref=f2e33]
+      - paragraph [ref=f2e34]: Backend intern at Brunswick. Undergrad researcher at URSA. Software intern at OpenMind AI. Project manager at Disruption Lab.
+      - paragraph [ref=f2e35]: Below, the skills I've actually used, mapped to where I used them. Click chips to filter.
+      - link "Download resume.pdf" [ref=f2e37] [cursor=pointer]:
+        - /url: /resume.pdf
+        - text: Download resume.pdf
+        - img [ref=f2e38]
+    - generic [ref=f2e42]:
+      - generic [ref=f2e43]:
+        - heading "Skills" [level=3] [ref=f2e45]
+        - paragraph [ref=f2e46]: Click chips to filter. Arrow keys traverse. Esc clears.
+        - generic [ref=f2e47]:
+          - generic [ref=f2e48]:
+            - heading "Languages" [level=4] [ref=f2e49]
+            - group "Languages skills" [ref=f2e50]:
+              - listitem [ref=f2e51]:
+                - button "Python" [ref=f2e52]
+              - listitem [ref=f2e53]:
+                - button "TypeScript" [ref=f2e54]
+              - listitem [ref=f2e55]:
+                - button "Java" [ref=f2e56]
+              - listitem [ref=f2e57]:
+                - button "C++" [ref=f2e58]
+              - listitem [ref=f2e59]:
+                - button "C" [ref=f2e60]
+              - listitem [ref=f2e61]:
+                - button "JavaScript" [ref=f2e62]
+              - listitem [ref=f2e63]:
+                - button "Kotlin" [ref=f2e64]
+              - listitem [ref=f2e65]:
+                - button "SQL" [ref=f2e66]
+              - listitem [ref=f2e67]:
+                - button "Bash" [ref=f2e68]
+          - generic [ref=f2e69]:
+            - heading "Frameworks" [level=4] [ref=f2e70]
+            - group "Frameworks skills" [ref=f2e71]:
+              - listitem [ref=f2e72]:
+                - button "React" [ref=f2e73]
+              - listitem [ref=f2e74]:
+                - button "Next.js" [ref=f2e75]
+              - listitem [ref=f2e76]:
+                - button "Node" [ref=f2e77]
+              - listitem [ref=f2e78]:
+                - button "Express" [ref=f2e79]
+              - listitem [ref=f2e80]:
+                - button "Tailwind" [ref=f2e81]
+              - listitem [ref=f2e82]:
+                - button "Jetpack Compose" [ref=f2e83]
+              - listitem [ref=f2e84]:
+                - button "LangGraph" [ref=f2e85]
+              - listitem [ref=f2e86]:
+                - button "OpenAI API" [ref=f2e87]
+              - listitem [ref=f2e88]:
+                - button "PyTorch" [ref=f2e89]
+              - listitem [ref=f2e90]:
+                - button "TensorFlow" [ref=f2e91]
+              - listitem [ref=f2e92]:
+                - button "OpenCV" [ref=f2e93]
+              - listitem [ref=f2e94]:
+                - button "Pandas" [ref=f2e95]
+              - listitem [ref=f2e96]:
+                - button "NumPy" [ref=f2e97]
+          - generic [ref=f2e98]:
+            - heading "Tools" [level=4] [ref=f2e99]
+            - group "Tools skills" [ref=f2e100]:
+              - listitem [ref=f2e101]:
+                - button "AWS" [ref=f2e102]
+              - listitem [ref=f2e103]:
+                - button "Azure" [ref=f2e104]
+              - listitem [ref=f2e105]:
+                - button "Firebase" [ref=f2e106]
+              - listitem [ref=f2e107]:
+                - button "MongoDB" [ref=f2e108]
+              - listitem [ref=f2e109]:
+                - button "PostgreSQL" [ref=f2e110]
+              - listitem [ref=f2e111]:
+                - button "Linux" [ref=f2e112]
+              - listitem [ref=f2e113]:
+                - button "Android Studio" [ref=f2e114]
+              - listitem [ref=f2e115]:
+                - button "Godot" [ref=f2e116]
+        - paragraph [ref=f2e117]: 19 entries.
+      - generic [ref=f2e118]:
+        - heading "Where I've used them" [level=3] [ref=f2e119]
+        - list [ref=f2e121]:
+          - listitem [ref=f2e122]:
+            - generic [ref=f2e123]:
+              - heading "Brunswick Corporation" [level=4] [ref=f2e124]
+              - paragraph [ref=f2e125]: Backend Development Intern · May 2025 to May 2026
+            - paragraph [ref=f2e126]: Built a CV pipeline, a LangGraph boating agent on Azure, and an Android client for a CES demo to the CEO of a $5B company.
+            - list [ref=f2e127]:
+              - listitem [ref=f2e128]: Python
+              - listitem [ref=f2e129]: LangGraph
+              - listitem [ref=f2e130]: Azure
+              - listitem [ref=f2e131]: OpenCV
+              - listitem [ref=f2e132]: Kotlin
+              - listitem [ref=f2e133]: Jetpack Compose
+              - listitem [ref=f2e134]: Android Studio
+          - listitem [ref=f2e135]:
+            - generic [ref=f2e136]:
+              - heading "OpenMind AI" [level=4] [ref=f2e137]
+              - paragraph [ref=f2e138]: Software Development Intern · Jan 2026 to May 2026
+            - paragraph [ref=f2e139]: Shipped a gamified habit-loop product in Godot plus a React companion site, designed with a Brown psychology researcher.
+            - list [ref=f2e140]:
+              - listitem [ref=f2e141]: Godot
+              - listitem [ref=f2e142]: React
+              - listitem [ref=f2e143]: OpenAI API
+              - listitem [ref=f2e144]: TypeScript
+              - listitem [ref=f2e145]: Tailwind
+          - listitem [ref=f2e146]:
+            - generic [ref=f2e147]:
+              - heading "URSA Undergraduate Research" [level=4] [ref=f2e148]
+              - paragraph [ref=f2e149]: Undergraduate Researcher · Jan 2025 to May 2025
+            - paragraph [ref=f2e150]: Designed deep-learning pipelines that classify vehicles from multimodal IoT data (audio + vibration) using Vision Transformers.
+            - list [ref=f2e151]:
+              - listitem [ref=f2e152]: Python
+              - listitem [ref=f2e153]: PyTorch
+              - listitem [ref=f2e154]: TensorFlow
+              - listitem [ref=f2e155]: NumPy
+              - listitem [ref=f2e156]: Pandas
+          - listitem [ref=f2e157]:
+            - generic [ref=f2e158]:
+              - heading "Disruption Lab" [level=4] [ref=f2e159]
+              - paragraph [ref=f2e160]: Project Manager · Jan 2025 to May 2026
+            - paragraph [ref=f2e161]: Ran market research and shipped a Next.js MVP plus a custom AI chatbot used in a UIUC / IBKR / Bridgewater trading competition.
+            - list [ref=f2e162]:
+              - listitem [ref=f2e163]: Next.js
+              - listitem [ref=f2e164]: React
+              - listitem [ref=f2e165]: TypeScript
+              - listitem [ref=f2e166]: OpenAI API
+              - listitem [ref=f2e167]: Tailwind
+              - listitem [ref=f2e168]: MongoDB
+          - listitem [ref=f2e169]:
+            - generic [ref=f2e170]:
+              - heading "URSA Spring 2025 Research Framework" [level=4] [ref=f2e171]
+              - paragraph [ref=f2e172]: ML · AI · Research
+            - paragraph [ref=f2e173]: Deep-learning research framework for vehicle classification from multimodal IoT data. Combines spectrograms of audio and vibration with Vision Transformers, and includes self-supervised pretraining for sparse-label regimes.
+            - list [ref=f2e174]:
+              - listitem [ref=f2e175]: Python
+              - listitem [ref=f2e176]: PyTorch
+              - listitem [ref=f2e177]: TensorFlow
+              - listitem [ref=f2e178]: NumPy
+              - listitem [ref=f2e179]: Pandas
+          - listitem [ref=f2e180]:
+            - generic [ref=f2e181]:
+              - heading "Law Testing MVP" [level=4] [ref=f2e182]
+              - paragraph [ref=f2e183]: AI · Frontend
+            - paragraph [ref=f2e184]: React MVP that reads legal documents, compares clauses across versions, and flags risk using a custom OpenAI agent. Shipped as the Disruption Lab law-tech pilot.
+            - list [ref=f2e185]:
+              - listitem [ref=f2e186]: React
+              - listitem [ref=f2e187]: TypeScript
+              - listitem [ref=f2e188]: OpenAI API
+              - listitem [ref=f2e189]: Tailwind
+          - listitem [ref=f2e190]:
+            - generic [ref=f2e191]:
+              - heading "Event Consolidator" [level=4] [ref=f2e192]
+              - paragraph [ref=f2e193]: Frontend · Backend · Full-Stack · Database
+            - paragraph [ref=f2e194]: Next.js full-stack app that scrapes, dedupes, and re-publishes campus events into a single feed. Postgres-backed with a typed API layer.
+            - list [ref=f2e195]:
+              - listitem [ref=f2e196]: Next.js
+              - listitem [ref=f2e197]: TypeScript
+              - listitem [ref=f2e198]: PostgreSQL
+              - listitem [ref=f2e199]: Tailwind
+          - listitem [ref=f2e200]:
+            - generic [ref=f2e201]:
+              - heading "CNN Computer Vision Projects" [level=4] [ref=f2e202]
+              - paragraph [ref=f2e203]: ML · AI · CV
+            - paragraph [ref=f2e204]: A pack of TensorFlow and Keras CNN projects for image classification and segmentation. Covers data prep, augmentation, training, and evaluation.
+            - list [ref=f2e205]:
+              - listitem [ref=f2e206]: Python
+              - listitem [ref=f2e207]: TensorFlow
+              - listitem [ref=f2e208]: Keras
+              - listitem [ref=f2e209]: NumPy
+          - listitem [ref=f2e210]:
+            - generic [ref=f2e211]:
+              - heading "OpenCV2 Projects" [level=4] [ref=f2e212]
+              - paragraph [ref=f2e213]: CV · Backend
+            - paragraph [ref=f2e214]: Real-time computer vision experiments using OpenCV. Includes face mesh tracking, hand pose, gesture control, and a webcam-driven volume control.
+            - list [ref=f2e215]:
+              - listitem [ref=f2e216]: Python
+              - listitem [ref=f2e217]: OpenCV
+              - listitem [ref=f2e218]: NumPy
+          - listitem [ref=f2e219]:
+            - generic [ref=f2e220]:
+              - heading "WebView Wrapper (Android)" [level=4] [ref=f2e221]
+              - paragraph [ref=f2e222]: Mobile
+            - paragraph [ref=f2e223]: Kotlin and Jetpack Compose Android shell that wraps a web app as a native client, with deep-link routing and offline cache hints.
+            - list [ref=f2e224]:
+              - listitem [ref=f2e225]: Kotlin
+              - listitem [ref=f2e226]: Jetpack Compose
+              - listitem [ref=f2e227]: Android Studio
+        - button "9 more." [ref=f2e228]
+    - generic [ref=f2e231]:
+      - heading "Experience." [level=2] [ref=f2e232]
+      - paragraph [ref=f2e233]: Four roles across hardware, ML research, AI agents, and product work, and each one taught me a different way of breaking things.
+      - list [ref=f2e234]:
+        - listitem [ref=f2e235]:
+          - generic [ref=f2e237]:
+            - heading "Brunswick Corporation" [level=3] [ref=f2e238]
+            - paragraph [ref=f2e239]: May 2025 to May 2026
+          - paragraph [ref=f2e240]: Backend Development Intern · Champaign, IL
+          - paragraph [ref=f2e241]: Built a CV pipeline, a LangGraph boating agent on Azure, and an Android client for a CES demo to the CEO of a $5B company.
+          - list [ref=f2e242]:
+            - listitem [ref=f2e243]:
+              - generic [ref=f2e245]: Engineered a computer vision pipeline using template matching and AI integration to extract nautical symbols from PDFs. Improved accuracy by 45%+ and saved an estimated $500K+ annually.
+            - listitem [ref=f2e246]:
+              - generic [ref=f2e248]: Built an AI boating agent using LangGraph with tool-calling, deployed to Azure and shown by Brunswick at the Consumer Electronics Show (CES).
+            - listitem [ref=f2e249]:
+              - generic [ref=f2e251]: Developed a full-stack Android app in Kotlin and Jetpack Compose for the agent, integrating LLM API calls and dynamic UI for a CEO-level presentation.
+          - list [ref=f2e252]:
+            - listitem [ref=f2e253]: Python
+            - listitem [ref=f2e254]: LangGraph
+            - listitem [ref=f2e255]: Azure
+            - listitem [ref=f2e256]: OpenCV
+            - listitem [ref=f2e257]: Kotlin
+            - listitem [ref=f2e258]: Jetpack Compose
+            - listitem [ref=f2e259]: Android Studio
+        - listitem [ref=f2e260]:
+          - generic [ref=f2e262]:
+            - heading "OpenMind AI" [level=3] [ref=f2e263]
+            - paragraph [ref=f2e264]: Jan 2026 to May 2026
+          - paragraph [ref=f2e265]: Software Development Intern · Remote
+          - paragraph [ref=f2e266]: Shipped a gamified habit-loop product in Godot plus a React companion site, designed with a Brown psychology researcher.
+          - list [ref=f2e267]:
+            - listitem [ref=f2e268]:
+              - generic [ref=f2e270]: Ideated and developed a gamified approach in Godot to rewire habit loops, working from psychological techniques contributed by a Brown University psychology researcher.
+            - listitem [ref=f2e271]:
+              - generic [ref=f2e273]: Built and deployed a companion React-based website that wraps the OpenAI API with custom system prompts.
+          - list [ref=f2e274]:
+            - listitem [ref=f2e275]: Godot
+            - listitem [ref=f2e276]: React
+            - listitem [ref=f2e277]: OpenAI API
+            - listitem [ref=f2e278]: TypeScript
+            - listitem [ref=f2e279]: Tailwind
+        - listitem [ref=f2e280]:
+          - generic [ref=f2e282]:
+            - heading "URSA Undergraduate Research" [level=3] [ref=f2e283]
+            - paragraph [ref=f2e284]: Jan 2025 to May 2025
+          - paragraph [ref=f2e285]: Undergraduate Researcher · Champaign, IL
+          - paragraph [ref=f2e286]: Designed deep-learning pipelines that classify vehicles from multimodal IoT data (audio + vibration) using Vision Transformers.
+          - list [ref=f2e287]:
+            - listitem [ref=f2e288]:
+              - generic [ref=f2e290]: Designed a deep-learning pipeline to classify vehicle types from multimodal IoT data (audio + vibration) using spectrograms and Vision Transformers.
+            - listitem [ref=f2e291]:
+              - generic [ref=f2e293]: Built supervised and self-supervised pipelines to improve accuracy on sparse datasets.
+            - listitem [ref=f2e294]:
+              - generic [ref=f2e296]: Achieved 20%+ accuracy improvement and 40% reduction in training epochs through self-supervised pretraining.
+          - list [ref=f2e297]:
+            - listitem [ref=f2e298]: Python
+            - listitem [ref=f2e299]: PyTorch
+            - listitem [ref=f2e300]: TensorFlow
+            - listitem [ref=f2e301]: NumPy
+            - listitem [ref=f2e302]: Pandas
+        - listitem [ref=f2e303]:
+          - generic [ref=f2e305]:
+            - heading "Disruption Lab" [level=3] [ref=f2e306]
+            - paragraph [ref=f2e307]: Jan 2025 to May 2026
+          - paragraph [ref=f2e308]: Project Manager · Champaign, IL
+          - paragraph [ref=f2e309]: Ran market research and shipped a Next.js MVP plus a custom AI chatbot used in a UIUC / IBKR / Bridgewater trading competition.
+          - list [ref=f2e310]:
+            - listitem [ref=f2e311]:
+              - generic [ref=f2e313]: Conducted market research and client interviews to launch a subscription model for an AI-powered patent search tool. Connected the client with a $20B+ enterprise partner.
+            - listitem [ref=f2e314]:
+              - generic [ref=f2e316]: Developed a Next.js MVP that uses AI to review, compare, and store legal documents, streamlining client workflows.
+            - listitem [ref=f2e317]:
+              - generic [ref=f2e319]: Built a custom AI chatbot (model selection, system prompts, document grounding) and a companion site used in a UIUC, IBKR, and Bridgewater trading competition.
+          - list [ref=f2e320]:
+            - listitem [ref=f2e321]: Next.js
+            - listitem [ref=f2e322]: React
+            - listitem [ref=f2e323]: TypeScript
+            - listitem [ref=f2e324]: OpenAI API
+            - listitem [ref=f2e325]: Tailwind
+            - listitem [ref=f2e326]: MongoDB
+    - generic [ref=f2e328]:
+      - heading "Projects." [level=2] [ref=f2e330]
+      - tablist "Project category filter" [ref=f2e331]:
+        - tab "All (15)" [selected] [ref=f2e332]:
+          - generic [ref=f2e333]: All (15)
+        - tab "ML (4)" [ref=f2e335]:
+          - generic [ref=f2e336]: ML (4)
+        - tab "AI (4)" [ref=f2e337]:
+          - generic [ref=f2e338]: AI (4)
+        - tab "Frontend (6)" [ref=f2e339]:
+          - generic [ref=f2e340]: Frontend (6)
+        - tab "CV (2)" [ref=f2e341]:
+          - generic [ref=f2e342]: CV (2)
+        - tab "Backend (5)" [ref=f2e343]:
+          - generic [ref=f2e344]: Backend (5)
+        - tab "Mobile (2)" [ref=f2e345]:
+          - generic [ref=f2e346]: Mobile (2)
+        - tab "Full-Stack (2)" [ref=f2e347]:
+          - generic [ref=f2e348]: Full-Stack (2)
+        - tab "Database (2)" [ref=f2e349]:
+          - generic [ref=f2e350]: Database (2)
+        - tab "Research (1)" [ref=f2e351]:
+          - generic [ref=f2e352]: Research (1)
+      - button "URSA Spring 2025 Research Framework URSA Spring 2025 Research Framework Deep-learning research framework for vehicle classification from multimodal IoT data. Combines spectrograms of audio and vibration with Vision Transformers, and includes self-supervised pretraining for sparse-label regimes. Python PyTorch TensorFlow NumPy Pandas GitHub" [ref=f2e354] [cursor=pointer]:
+        - paragraph [ref=f2e357]: URSA Spring 2025 Research Framework
+        - generic [ref=f2e358]:
+          - heading "URSA Spring 2025 Research Framework" [level=3] [ref=f2e359]
+          - paragraph [ref=f2e360]: Deep-learning research framework for vehicle classification from multimodal IoT data. Combines spectrograms of audio and vibration with Vision Transformers, and includes self-supervised pretraining for sparse-label regimes.
+          - generic [ref=f2e361]:
+            - list [ref=f2e362]:
+              - listitem [ref=f2e363]: Python
+              - listitem [ref=f2e364]: PyTorch
+              - listitem [ref=f2e365]: TensorFlow
+              - listitem [ref=f2e366]: NumPy
+              - listitem [ref=f2e367]: Pandas
+            - link "GitHub" [ref=f2e368]:
+              - /url: https://github.com/lmnance2/URSA
+              - text: GitHub
+              - img [ref=f2e369]
+      - generic [ref=f2e372]:
+        - button "Law Testing MVP Law Testing MVP React MVP that reads legal documents, compares clauses across versions, and flags risk using a custom OpenAI agent. Shipped as the Disruption Lab law-tech pilot. React TypeScript OpenAI API Tailwind GitHub" [ref=f2e373] [cursor=pointer]:
+          - paragraph [ref=f2e376]: Law Testing MVP
+          - generic [ref=f2e377]:
+            - heading "Law Testing MVP" [level=3] [ref=f2e378]
+            - paragraph [ref=f2e379]: React MVP that reads legal documents, compares clauses across versions, and flags risk using a custom OpenAI agent. Shipped as the Disruption Lab law-tech pilot.
+            - generic [ref=f2e380]:
+              - list [ref=f2e381]:
+                - listitem [ref=f2e382]: React
+                - listitem [ref=f2e383]: TypeScript
+                - listitem [ref=f2e384]: OpenAI API
+                - listitem [ref=f2e385]: Tailwind
+              - link "GitHub" [ref=f2e386]:
+                - /url: https://github.com/lmnance2/Law-Testing-MVP
+                - text: GitHub
+                - img [ref=f2e387]
+        - button "Event Consolidator Event Consolidator Next.js full-stack app that scrapes, dedupes, and re-publishes campus events into a single feed. Postgres-backed with a typed API layer. Next.js TypeScript PostgreSQL Tailwind GitHub" [ref=f2e390] [cursor=pointer]:
+          - paragraph [ref=f2e393]: Event Consolidator
+          - generic [ref=f2e394]:
+            - heading "Event Consolidator" [level=3] [ref=f2e395]
+            - paragraph [ref=f2e396]: Next.js full-stack app that scrapes, dedupes, and re-publishes campus events into a single feed. Postgres-backed with a typed API layer.
+            - generic [ref=f2e397]:
+              - list [ref=f2e398]:
+                - listitem [ref=f2e399]: Next.js
+                - listitem [ref=f2e400]: TypeScript
+                - listitem [ref=f2e401]: PostgreSQL
+                - listitem [ref=f2e402]: Tailwind
+              - link "GitHub" [ref=f2e403]:
+                - /url: https://github.com/lmnance2/Event-Consolidator
+                - text: GitHub
+                - img [ref=f2e404]
+      - generic [ref=f2e407]:
+        - button "CNN Computer Vision Projects CNN Computer Vision Projects A pack of TensorFlow and Keras CNN projects for image classification and segmentation. Covers data prep, augmentation, training, and evaluation. Python TensorFlow Keras NumPy GitHub" [ref=f2e408] [cursor=pointer]:
+          - paragraph [ref=f2e411]: CNN Computer Vision Projects
+          - generic [ref=f2e412]:
+            - heading "CNN Computer Vision Projects" [level=3] [ref=f2e413]
+            - paragraph [ref=f2e414]: A pack of TensorFlow and Keras CNN projects for image classification and segmentation. Covers data prep, augmentation, training, and evaluation.
+            - generic [ref=f2e415]:
+              - list [ref=f2e416]:
+                - listitem [ref=f2e417]: Python
+                - listitem [ref=f2e418]: TensorFlow
+                - listitem [ref=f2e419]: Keras
+                - listitem [ref=f2e420]: NumPy
+              - link "GitHub" [ref=f2e421]:
+                - /url: https://github.com/lmnance2/cnn-cv-projects
+                - text: GitHub
+                - img [ref=f2e422]
+        - button "OpenCV2 Projects OpenCV2 Projects Real-time computer vision experiments using OpenCV. Includes face mesh tracking, hand pose, gesture control, and a webcam-driven volume control. Python OpenCV NumPy GitHub" [ref=f2e425] [cursor=pointer]:
+          - paragraph [ref=f2e428]: OpenCV2 Projects
+          - generic [ref=f2e429]:
+            - heading "OpenCV2 Projects" [level=3] [ref=f2e430]
+            - paragraph [ref=f2e431]: Real-time computer vision experiments using OpenCV. Includes face mesh tracking, hand pose, gesture control, and a webcam-driven volume control.
+            - generic [ref=f2e432]:
+              - list [ref=f2e433]:
+                - listitem [ref=f2e434]: Python
+                - listitem [ref=f2e435]: OpenCV
+                - listitem [ref=f2e436]: NumPy
+              - link "GitHub" [ref=f2e437]:
+                - /url: https://github.com/lmnance2/OpenCV2-projects
+                - text: GitHub
+                - img [ref=f2e438]
+        - button "WebView Wrapper (Android) WebView Wrapper (Android) Kotlin and Jetpack Compose Android shell that wraps a web app as a native client, with deep-link routing and offline cache hints. Kotlin Jetpack Compose Android Studio GitHub" [ref=f2e441] [cursor=pointer]:
+          - paragraph [ref=f2e444]: WebView Wrapper (Android)
+          - generic [ref=f2e445]:
+            - heading "WebView Wrapper (Android)" [level=3] [ref=f2e446]
+            - paragraph [ref=f2e447]: Kotlin and Jetpack Compose Android shell that wraps a web app as a native client, with deep-link routing and offline cache hints.
+            - generic [ref=f2e448]:
+              - list [ref=f2e449]:
+                - listitem [ref=f2e450]: Kotlin
+                - listitem [ref=f2e451]: Jetpack Compose
+                - listitem [ref=f2e452]: Android Studio
+              - link "GitHub" [ref=f2e453]:
+                - /url: https://github.com/lmnance2/webview_wrapper_test
+                - text: GitHub
+                - img [ref=f2e454]
+      - generic [ref=f2e457]:
+        - heading "Archive (9)" [level=3] [ref=f2e458]
+        - list [ref=f2e459]:
+          - button "Friendly Fineprint React TypeScript OpenAI API" [ref=f2e460] [cursor=pointer]:
+            - paragraph [ref=f2e462]: Friendly Fineprint
+            - list [ref=f2e464]:
+              - listitem [ref=f2e465]: React
+              - listitem [ref=f2e466]: TypeScript
+              - listitem [ref=f2e467]: OpenAI API
+          - button "Systems Projects C Linux Bash" [ref=f2e468] [cursor=pointer]:
+            - paragraph [ref=f2e470]: Systems Projects
+            - list [ref=f2e472]:
+              - listitem [ref=f2e473]: C
+              - listitem [ref=f2e474]: Linux
+              - listitem [ref=f2e475]: Bash
+          - button "Ubermate Cleaning Next.js Tailwind MongoDB React" [ref=f2e476] [cursor=pointer]:
+            - paragraph [ref=f2e478]: Ubermate Cleaning
+            - list [ref=f2e480]:
+              - listitem [ref=f2e481]: Next.js
+              - listitem [ref=f2e482]: Tailwind
+              - listitem [ref=f2e483]: MongoDB
+              - listitem [ref=f2e484]: React
+          - button "RunBuddies Java Firebase Android Studio" [ref=f2e485] [cursor=pointer]:
+            - paragraph [ref=f2e487]: RunBuddies
+            - list [ref=f2e489]:
+              - listitem [ref=f2e490]: Java
+              - listitem [ref=f2e491]: Firebase
+              - listitem [ref=f2e492]: Android Studio
+          - button "This Site Next.js React TypeScript Tailwind" [ref=f2e493] [cursor=pointer]:
+            - paragraph [ref=f2e495]: This Site
+            - list [ref=f2e497]:
+              - listitem [ref=f2e498]: Next.js
+              - listitem [ref=f2e499]: React
+              - listitem [ref=f2e500]: TypeScript
+              - listitem [ref=f2e501]: Tailwind
+          - button "Calories Burnt Predictor Python Pandas scikit-learn GitHub" [ref=f2e502] [cursor=pointer]:
+            - paragraph [ref=f2e504]: Calories Burnt Predictor
+            - list [ref=f2e506]:
+              - listitem [ref=f2e507]: Python
+              - listitem [ref=f2e508]: Pandas
+              - listitem [ref=f2e509]: scikit-learn
+            - link "GitHub" [ref=f2e511]:
+              - /url: https://github.com/lmnance2/calories-burnt-predictor
+              - text: GitHub
+              - img [ref=f2e512]
+          - button "Titanic Survival Classification Python Pandas scikit-learn GitHub" [ref=f2e515] [cursor=pointer]:
+            - paragraph [ref=f2e517]: Titanic Survival Classification
+            - list [ref=f2e519]:
+              - listitem [ref=f2e520]: Python
+              - listitem [ref=f2e521]: Pandas
+              - listitem [ref=f2e522]: scikit-learn
+            - link "GitHub" [ref=f2e524]:
+              - /url: https://github.com/lmnance2/Titanic-Survival-Classification
+              - text: GitHub
+              - img [ref=f2e525]
+          - button "JavaScript Amazon Project JavaScript HTML CSS GitHub" [ref=f2e528] [cursor=pointer]:
+            - paragraph [ref=f2e530]: JavaScript Amazon Project
+            - list [ref=f2e532]:
+              - listitem [ref=f2e533]: JavaScript
+              - listitem [ref=f2e534]: HTML
+              - listitem [ref=f2e535]: CSS
+            - link "GitHub" [ref=f2e537]:
+              - /url: https://github.com/lmnance2/Javascript-amazon-project
+              - text: GitHub
+              - img [ref=f2e538]
+          - button "Node Express Tutorial Node Express MongoDB GitHub" [ref=f2e541] [cursor=pointer]:
+            - paragraph [ref=f2e543]: Node Express Tutorial
+            - list [ref=f2e545]:
+              - listitem [ref=f2e546]: Node
+              - listitem [ref=f2e547]: Express
+              - listitem [ref=f2e548]: MongoDB
+            - link "GitHub" [ref=f2e550]:
+              - /url: https://github.com/lmnance2/Node-Express-Tutorial
+              - text: GitHub
+              - img [ref=f2e551]
+    - generic [ref=f2e556]:
+      - generic [ref=f2e557]:
+        - heading "Education." [level=2] [ref=f2e558]
+        - paragraph [ref=f2e559]: University of Illinois Urbana-Champaign, Grainger College of Engineering.
+        - paragraph [ref=f2e560]: B.S. Computer Science, Minor in Business. GPA 3.90. Expected May 2028.
+        - heading "Coursework" [level=3] [ref=f2e561]
+        - paragraph [ref=f2e562]: Data Structures, Algorithms, Discrete Structures, Computer Architecture, Systems Programming, Database Systems, Linear Algebra, Probability and Statistics for CS, Numerical Methods, IBM Data Science.
+      - generic [ref=f2e563]:
+        - heading "Extracurriculars." [level=2] [ref=f2e564]
+        - list [ref=f2e565]:
+          - listitem [ref=f2e566]:
+            - generic [ref=f2e567]: ACM SigAida
+            - generic [ref=f2e568]: Member
+          - listitem [ref=f2e569]:
+            - generic [ref=f2e570]: Disruption Lab
+            - generic [ref=f2e571]: Project Manager
+          - listitem [ref=f2e572]:
+            - generic [ref=f2e573]: Dev Ada
+            - generic [ref=f2e574]: Member
+          - listitem [ref=f2e575]:
+            - generic [ref=f2e576]: NOBE
+            - generic [ref=f2e577]: Builder
+          - listitem [ref=f2e578]:
+            - generic [ref=f2e579]: Euchre Club
+            - generic [ref=f2e580]: Member
+    - generic [ref=f2e582]:
+      - heading "Hire me, or talk shop." [level=2] [ref=f2e583]
+      - paragraph [ref=f2e584]: Easiest to reach by email. Resume below.
+      - generic [ref=f2e585]:
+        - link "Email Liam" [ref=f2e586] [cursor=pointer]:
+          - /url: mailto:liamnance06@gmail.com
+          - img [ref=f2e587]
+          - text: Email Liam
+        - button "Copy email to clipboard" [ref=f2e590]:
+          - img [ref=f2e591]
+          - generic [ref=f2e594]: Copy
+      - link "Download resume.pdf" [ref=f2e596] [cursor=pointer]:
+        - /url: /resume.pdf
+        - img [ref=f2e597]
+        - text: Download resume.pdf
+      - paragraph [ref=f2e599]:
+        - link "github.com/lmnance2" [ref=f2e600] [cursor=pointer]:
+          - /url: https://github.com/lmnance2
+        - text: ·
+        - link "linkedin.com/in/liam-nance-a17152316" [ref=f2e601] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/liam-nance-a17152316/
+  - contentinfo [ref=f2e602]:
+    - generic [ref=f2e603]:
+      - paragraph [ref=f2e604]:
+        - link "liamnance06@gmail.com" [ref=f2e605] [cursor=pointer]:
+          - /url: mailto:liamnance06@gmail.com
+        - text: ·
+        - link "github.com/lmnance2" [ref=f2e606] [cursor=pointer]:
+          - /url: https://github.com/lmnance2
+        - text: ·
+        - link "linkedin.com/in/liam-nance-a17152316" [ref=f2e607] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/liam-nance-a17152316/
+      - paragraph [ref=f2e608]: Built in Champaign, IL.
+  - button "Open Next.js Dev Tools" [ref=f2e614] [cursor=pointer]:
+    - img [ref=f2e615]

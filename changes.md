@@ -2,15 +2,14 @@ Below are all of the changes I would like to make to my personal portfolio:
 
 Professional page changes:
 
-1. For my projects, I will later provide you demo videos for some of them. For now, don't change anything with them, just be prepared to have demo videos in the area where the big version of the name is now
-2. Have buttons at the top of the professional page to navigate to different parts of it, like skills, experiences, projects, education, and contact me
-3. Go onto my github at github.com/lmnance2 and add all public projects onto my professional page on the website. Each project should have a detailed readme about the project.
-4. Also, because I will be adding a lot of projects. Only feature the 6 projects you deem as best. Then, a user can filter for projects based on type of project (machine learning, frontend, database use, AI, Computer Vision, etc. A single project can meet several of these filters). Have the rest of the projects available if they are filtered for or if the user clicks a view all projects button.
-5. Change the links to be correct. The email is already good. The github should be github.com/lmnance2, and the linkedin should be https://www.linkedin.com/in/liam-nance-a17152316/
+1. I want the skills to reference all of my projects/experiences. So, how about we have the where I've used them section have a cap of 10 elements. But be able to use every single project and experience I have. Also, get rid of the Annotated Iliad project.
+2. Also add the projects I have referenced in the current where I've used them section that aren't in the github still be in the projects section.
+3. I want the projects to still be able to be selected and open that side interface with more information about the project, the demo video (though it can be on the main display as well), the github link (if it has one), and anything else that is necessary to add. Is case by case.
+4. Don't include the dates for the projects (only for experience/education)
 
 Personal page changes:
 
-I like how it is almost like a curated feed of my interests. That can stay. But I want it to be sectioned off into the following sections (randomize the order) that can be selected through to watch videos, see pictures, read quotes/stats, etc. Keep the vibe fun and lighthearted:
+Currently it is way too fluid of a feel. Let's have it still be scrollable down but separated into the following sections. Have it be so a user can click on arrows to rotate from different images/videos/facts for each section. For each section, include what I tell you to include below and nothing else. Also, the videos and images aren't loading right now, please put them in correctly.
 
 1. My tennis
    a. Include the tennis specific videos and images in personal_page_media folder
@@ -51,11 +50,12 @@ I like how it is almost like a curated feed of my interests. That can stay. But 
 5. My fitness
    a. Include the running and lifting specific videos in personal_page_media folder
    b. Include facts about my fitness (fastest mile (5:39), Max bench (295), Max squat (365), Max deadlift (365))
-6. Random other things. Not part of a specific section, but inbetween and throughout the page please include quotes from books I've read or popular tv shows or movies. Offer tv shows/movie recs (only include very popular and well regarded shows/movies, nothing controversial). Offer a lot of NBA and professional tennis stats. Find any somewhat recent stats by searching online to avoid stale knowledge. For historical information, training knowledge is fine. Keep the tone fun, funny, and light
+6. My music
+   a. Here I will include the music to a bunch of my favorite songs in the future, for now leave it as a blank session
 
 Other miscellaneous changes:
 
-1. Let's ideate on ways to change the party mode. This current theme isn't amazing.
-2. I like the idea of easter eggs, but make the fact that they exist a bit more prominent throughout. When one is found, have a fun popup that fades away after a click saying that you found an easter egg, congratulations. And have it be on the home page that there are certain easter eggs to find. Then there can be a hint page nearby which can let the user know that they can be activated by key presses, finding hidden features, or repeated clicks on the page, or other fun ideas. You can come up with the specifics and tell me what you think is good.
-3. Let's also make a quick contact me area (either unique page or button to go to a place on the page with my information)
+1. Let's get rid of the party mode, I think it distracts from what I'm trying to do.
+2. Let's remove the easter eggs, I don't think they are adding much
+3. The sign the book session doesn't appear to be functional right now, let's fix that
 4. If you have any other fun ideas that wouldn't be overly distracting or take too much away from the point of the website, please let me know.

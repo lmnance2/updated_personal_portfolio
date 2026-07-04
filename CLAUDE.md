@@ -48,3 +48,4 @@ Design priorities:
 - Responsive design for desktop and mobile
 - Accessible colors, readable text, and keyboard-friendly interactions
 - Preferrably don't use dark mode unless it will greatly harm the overall aesthetic of the website
+- After each change, please update the project-description.md file with the changes made so it stays up to date

@@ -4,14 +4,18 @@ import { SkillGraph } from "@/components/professional/skill-graph";
 import { ExperienceTimeline } from "@/components/professional/experience-timeline";
 import { ProjectsGallery } from "@/components/professional/projects-gallery";
 import { Education } from "@/components/professional/education";
+import { Contact } from "@/components/professional/contact";
+import { ProfessionalSubNav, JumpButton } from "@/components/professional/sub-nav";
 
 export const metadata: Metadata = {
-  title: "Professional — Liam Nance",
+  title: "Professional. Liam Nance",
 };
 
 export default function ProfessionalPage() {
   return (
     <>
+      <ProfessionalSubNav />
+
       {/* Section 1: page header on cream. */}
       <section className="mx-auto max-w-[1400px] px-4 pb-12 pt-16 sm:px-6 lg:px-8">
         <h1 className="display-h1">Professional.</h1>
@@ -28,25 +32,39 @@ export default function ProfessionalPage() {
             rel="noopener noreferrer"
             className="ui inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 hover:bg-[var(--bg)]"
           >
-            Download résumé.pdf
+            Download resume.pdf
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>
       </section>
 
       {/* Section 2: skill graph */}
-      <section className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 lg:px-8">
+      <section
+        id="skills"
+        className="mx-auto max-w-[1400px] scroll-mt-32 px-4 py-10 sm:px-6 lg:px-8"
+      >
         <SkillGraph />
       </section>
 
       {/* Section 3: drenched terracotta timeline */}
-      <ExperienceTimeline />
+      <div id="experience" className="scroll-mt-32">
+        <ExperienceTimeline />
+      </div>
 
       {/* Section 4: projects gallery */}
-      <ProjectsGallery />
+      <div className="scroll-mt-32">
+        <ProjectsGallery />
+      </div>
 
       {/* Section 5: education + extracurriculars */}
-      <Education />
+      <div id="education" className="scroll-mt-32">
+        <Education />
+      </div>
+
+      {/* Section 6: contact */}
+      <Contact />
+
+      <JumpButton />
     </>
   );
 }

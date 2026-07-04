@@ -1,25 +1,37 @@
-"use client";
-
 import { SITE } from "@/lib/site";
-import { useEasterEggs } from "@/components/easter-eggs/easter-egg-provider";
 
 export function Footer() {
-  const { foundCount } = useEasterEggs();
   return (
-    <footer className="mt-24 border-t border-[var(--border)] bg-[var(--bg)]">
-      <div className="mx-auto max-w-[1400px] px-4 py-12 sm:px-6 lg:px-8">
-        <p className="ui text-[var(--muted)]">
-          <a className="hover:text-[var(--fg)]" href={`mailto:${SITE.email}`}>{SITE.email}</a>
-          <span className="px-2 text-[var(--border)]">/</span>
-          <a className="hover:text-[var(--fg)]" href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">github.com/{SITE.github}</a>
-          <span className="px-2 text-[var(--border)]">/</span>
-          <a className="hover:text-[var(--fg)]" href={SITE.linkedinUrl} target="_blank" rel="noopener noreferrer">{SITE.linkedin}</a>
+    <footer className="border-t border-[var(--border)] bg-[var(--bg)]">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8" style={{ paddingTop: "64px", paddingBottom: "48px" }}>
+        <p className="ui">
+          <a
+            href={`mailto:${SITE.email}`}
+            className="hover:underline hover:underline-offset-4 transition-colors"
+          >
+            {SITE.email}
+          </a>
+          <span className="px-2 text-[var(--border)]" aria-hidden> · </span>
+          <a
+            href={SITE.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline hover:underline-offset-4 transition-colors"
+          >
+            github.com/{SITE.github}
+          </a>
+          <span className="px-2 text-[var(--border)]" aria-hidden> · </span>
+          <a
+            href={SITE.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline hover:underline-offset-4 transition-colors"
+          >
+            {SITE.linkedin}
+          </a>
         </p>
-        <p className="ui mt-3" style={{ color: "var(--accent-strong)" }}>
-          secrets: {foundCount}/7
-        </p>
-        <p className="ui mt-3 text-[var(--muted)]">
-          Built with Next.js. {SITE.location}.
+        <p className="caption mt-2" style={{ color: "var(--muted)" }}>
+          Built in Champaign, IL.
         </p>
       </div>
     </footer>

@@ -1,0 +1,131 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Liam Nance" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation "Main" [ref=e5]:
+        - link "Home" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - link "Professional" [ref=e7] [cursor=pointer]:
+          - /url: /professional
+        - link "Personal" [ref=e8] [cursor=pointer]:
+          - /url: /personal
+          - text: Personal
+        - link "Resume" [ref=e10] [cursor=pointer]:
+          - /url: /Liam_Nance_Resume.pdf
+          - text: Resume
+          - img [ref=e11]
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - heading "Off the clock." [level=1] [ref=e16]
+      - paragraph [ref=e17]: "Six threads: tennis, basketball, golf, the library, fitness, and music."
+    - generic [ref=e18]:
+      - heading "Tennis." [level=2] [ref=e20]
+      - region "Tennis section" [ref=e22]:
+        - generic [ref=e23]:
+          - button "Previous slide" [disabled]:
+            - img
+          - button "Next slide" [ref=e27]:
+            - img [ref=e28]
+        - generic "Slide 1 of 4" [ref=e33]: 1 / 4
+    - generic [ref=e34]:
+      - heading "Basketball." [level=2] [ref=e36]
+      - region "Basketball section" [ref=e38]:
+        - generic [ref=e39]:
+          - button "Previous slide" [disabled]:
+            - img
+          - button "Next slide" [ref=e43]:
+            - img [ref=e44]
+        - generic "Slide 1 of 4" [ref=e49]: 1 / 4
+    - generic [ref=e50]:
+      - heading "Golf." [level=2] [ref=e52]
+      - region "Golf section" [ref=e54]:
+        - generic [ref=e55]:
+          - button "Previous slide" [disabled]:
+            - img
+          - button "Next slide" [ref=e59]:
+            - img [ref=e60]
+        - generic "Slide 1 of 3" [ref=e65]: 1 / 3
+    - generic [ref=e66]:
+      - heading "Library." [level=2] [ref=e68]
+      - region "Library section" [ref=e70]:
+        - generic [ref=e71]:
+          - button "Previous slide" [disabled]:
+            - img
+          - generic [ref=e73]:
+            - img "Warbreaker cover" [ref=e75]
+            - generic [ref=e77]:
+              - paragraph [ref=e78]: Warbreaker
+              - paragraph [ref=e79]: Brandon Sanderson
+              - img "4 out of 5 stars" [ref=e81]
+          - button "Next slide" [ref=e87]:
+            - img [ref=e88]
+        - generic "Slide 1 of 26" [ref=e93]: 1 / 26
+    - generic [ref=e94]:
+      - heading "Fitness." [level=2] [ref=e96]
+      - region "Fitness section" [ref=e98]:
+        - generic [ref=e99]:
+          - button "Previous slide" [disabled]:
+            - img
+          - button "Next slide" [ref=e103]:
+            - img [ref=e104]
+        - generic "Slide 1 of 3" [ref=e109]: 1 / 3
+    - generic [ref=e110]:
+      - heading "Music." [level=2] [ref=e112]
+      - paragraph [ref=e117]: A playlist of favorites lives here soon.
+    - generic [ref=e120]:
+      - generic [ref=e121]:
+        - paragraph [ref=e122]: Now reading
+        - generic [ref=e123]:
+          - paragraph [ref=e124]: The Iliad
+          - paragraph [ref=e125]: Lattimore translation
+          - paragraph [ref=e126]: Book IX tonight. Currently negotiating the embassy to Achilles' tent.
+      - generic [ref=e127]:
+        - paragraph [ref=e128]: Now playing
+        - generic [ref=e129]:
+          - paragraph [ref=e130]: GitHub, last 7 days
+          - generic [ref=e131]:
+            - 'generic "Day 1: 0 commits" [ref=e132]'
+            - 'generic "Day 2: 0 commits" [ref=e133]'
+            - 'generic "Day 3: 0 commits" [ref=e134]'
+            - 'generic "Day 4: 8 commits" [ref=e135]'
+            - 'generic "Day 5: 0 commits" [ref=e136]'
+            - 'generic "Day 6: 0 commits" [ref=e137]'
+            - 'generic "Day 7: 0 commits" [ref=e138]'
+          - paragraph [ref=e139]: 8 commits this week.
+      - generic [ref=e140]:
+        - paragraph [ref=e141]: Now in the feed
+        - generic [ref=e142]:
+          - paragraph [ref=e143]: Pacers vs. Knicks series, Game 6
+          - paragraph [ref=e144]: live, updated daily.
+    - generic [ref=e145]:
+      - heading "Sign the wall." [level=2] [ref=e146]
+      - paragraph [ref=e147]: One line. That's the whole rule.
+      - generic [ref=e148]:
+        - textbox "Your line" [ref=e149]:
+          - /placeholder: Leave a line
+        - generic [ref=e151]: 0 / 240
+        - generic [ref=e152]:
+          - generic [ref=e153]: Name (optional)
+          - textbox "Your name" [ref=e154]:
+            - /placeholder: Anonymous
+        - button "Leave it." [disabled] [ref=e156]
+      - list
+    - button "Jump to thread" [ref=e159]:
+      - text: Threads
+      - img [ref=e160]
+  - contentinfo [ref=e162]:
+    - generic [ref=e163]:
+      - paragraph [ref=e164]:
+        - link "liamnance06@gmail.com" [ref=e165] [cursor=pointer]:
+          - /url: mailto:liamnance06@gmail.com
+        - text: ·
+        - link "github.com/lmnance2" [ref=e166] [cursor=pointer]:
+          - /url: https://github.com/lmnance2
+        - text: ·
+        - link "linkedin.com/in/liam-nance-a17152316" [ref=e167] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/liam-nance-a17152316/
+      - paragraph [ref=e168]: Built in Champaign, IL.
+  - button "Open Next.js Dev Tools" [ref=e174] [cursor=pointer]:
+    - img [ref=e175]
+  - alert [ref=e178]

@@ -1,8 +1,10 @@
 ---
 name: frontend-designer
-description: Creation of front end UI components and associated tasks from a given description. Writes the code in the codebase to accompish the task. Returns the resulting front end architecture
+description: Creation of front end UI components and associated tasks from a given description. Writes the code in the codebase to accomplish the task. Returns the resulting front end architecture.
 model: sonnet
-tools: Read, Write
+tools:
+  - Read
+  - Write
 ---
 
 # Code Designer Subagent

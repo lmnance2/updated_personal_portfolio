@@ -190,20 +190,6 @@ export const PROJECTS: Project[] = [
     variant: "card",
   },
   {
-    id: "annotated-iliad",
-    title: "Annotated Iliad (in progress)",
-    dates: "2026",
-    blurb:
-      "A digital annotated edition of Lattimore's Iliad, with cross-references, character maps, and a search index over the full text.",
-    bullets: [
-      "Parsed and tokenized a clean public-domain text into a searchable index.",
-      "Designed a side-by-side annotation UI for context, glossary, and references.",
-      "Next.js + Postgres-backed; full text search across 24 books.",
-    ],
-    skills: ["Next.js", "TypeScript", "PostgreSQL"],
-    variant: "card",
-  },
-  {
     id: "portfolio",
     title: "this site",
     dates: "2026",

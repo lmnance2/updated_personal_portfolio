@@ -1,37 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { RotatingNumber } from "./rotating-number";
-import { useEasterEggs } from "@/components/easter-eggs/easter-egg-provider";
 
 export function HeroSplit() {
-  const { unlock, pulses } = useEasterEggs();
-  const [periodTaps, setPeriodTaps] = useState(0);
-  const [burst, setBurst] = useState(0);
-
-  const tagline =
-    pulses.konami > 0
-      ? "I write code. Mostly it doesn't compile the first time."
-      : "I write code. Sometimes it does something useful.";
-
-  // Split tagline into the part before the final period for the egg.
-  const onPeriod = () => {
-    const next = periodTaps + 1;
-    setPeriodTaps(next);
-    if (next >= 5) {
-      unlock("period-clicks");
-      setBurst((b) => b + 1);
-      setPeriodTaps(0);
-    }
-  };
-
-  // Render the headline with the last "." replaced by a button.
-  // Tagline always ends with a period.
-  const lastDot = tagline.lastIndexOf(".");
-  const head = tagline.slice(0, lastDot);
-  const tail = tagline.slice(lastDot + 1);
+  const tagline = "I write code. Sometimes it does something useful.";
 
   return (
     <section className="relative grid min-h-[calc(100dvh-64px)] grid-cols-1 md:grid-cols-2">
@@ -45,28 +19,11 @@ export function HeroSplit() {
         </div>
       </div>
 
-      {/* Terracotta half — drenched. */}
+      {/* Terracotta half. Drenched. */}
       <div className="relative flex items-center justify-center bg-[var(--accent)] px-6 py-16 text-[var(--bg)] md:py-0">
         <div className="max-w-xl">
           <h1 className="display-hero" style={{ color: "var(--bg)" }}>
-            {head}
-            <button
-              type="button"
-              aria-label="A small period"
-              onClick={onPeriod}
-              className="relative inline-block align-baseline focus-visible:outline-2"
-              style={{ color: "var(--bg)" }}
-            >
-              .
-              {burst > 0 && (
-                <span
-                  key={burst}
-                  className="spark-burst pointer-events-none absolute -right-2 -top-2 h-4 w-4 rounded-full bg-[var(--spark)]"
-                  aria-hidden
-                />
-              )}
-            </button>
-            {tail}
+            {tagline}
           </h1>
 
           <div className="mt-8 h-px w-12 bg-[var(--bg)]/80" aria-hidden />

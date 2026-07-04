@@ -10,10 +10,10 @@ export const SITE = {
    * If Liam's real GitHub handle differs from this placeholder, change the
    * value below. The /api/github Route Handler reads it.
    */
-  github: "liamnance",
-  githubUrl: "https://github.com/liamnance",
-  linkedin: "linkedin.com/in/liam-nance",
-  linkedinUrl: "https://linkedin.com/in/liam-nance",
+  github: "lmnance2",
+  githubUrl: "https://github.com/lmnance2",
+  linkedin: "linkedin.com/in/liam-nance-a17152316",
+  linkedinUrl: "https://www.linkedin.com/in/liam-nance-a17152316/",
   location: "Champaign, IL",
   expectedGrad: "May 2028",
   school: "University of Illinois Urbana-Champaign",
