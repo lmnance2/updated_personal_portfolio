@@ -50,12 +50,12 @@ export function Contact() {
 
         <div className="mt-5">
           <a
-            href="/resume.pdf"
+            href="/Liam_Nance_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="ui inline-flex items-center gap-2 rounded-full border border-[var(--fg)] px-5 py-2 transition-colors hover:bg-[var(--accent)] hover:text-[var(--bg)]"
           >
-            <ArrowDown className="h-4 w-4" aria-hidden /> Download resume.pdf
+            <ArrowDown className="h-4 w-4" aria-hidden /> Download Resume
           </a>
         </div>
 

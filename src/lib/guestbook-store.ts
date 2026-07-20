@@ -18,7 +18,6 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 async function getKv() {
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return null;
   try {
-    // @ts-expect-error optional peer dep
     const mod = await import("@vercel/kv");
     return mod.kv as {
       lrange(k: string, s: number, e: number): Promise<unknown[]>;

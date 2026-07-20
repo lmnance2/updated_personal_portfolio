@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 /* ------------------------------------------------------------------ */
@@ -28,12 +28,13 @@ export type StatsSlide = {
 
 export type BookSlide = {
   kind: "book";
+  rank: number;
   cover?: string;
   title: string;
   author: string;
   series?: string;
   seriesPos?: { index: number; total: number };
-  stars: 0 | 1 | 2 | 3 | 4 | 5;
+  rating: number;
 };
 
 export type Slide = VideoSlide | ImageSlide | StatsSlide | BookSlide;
@@ -244,38 +245,6 @@ function StatsSlideRenderer({ slide }: { slide: StatsSlide }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Stars renderer                                                       */
-/* ------------------------------------------------------------------ */
-
-function Stars({ count }: { count: 0 | 1 | 2 | 3 | 4 | 5 }) {
-  const boxSize = 18;
-  const gap = 6;
-  const totalWidth = 5 * boxSize + 4 * gap;
-
-  return (
-    <svg
-      width={totalWidth}
-      height={boxSize}
-      aria-label={`${count} out of 5 stars`}
-      role="img"
-    >
-      {Array.from({ length: 5 }).map((_, i) => (
-        <rect
-          key={i}
-          x={i * (boxSize + gap)}
-          y={0}
-          width={boxSize}
-          height={boxSize}
-          fill={i < count ? "var(--accent)" : "none"}
-          stroke={i < count ? "none" : "var(--border)"}
-          strokeWidth={1}
-        />
-      ))}
-    </svg>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /* Book slide renderer                                                  */
 /* ------------------------------------------------------------------ */
 
@@ -300,77 +269,232 @@ function CoverFallback({ title }: { title: string }) {
   );
 }
 
-function BookSlideRenderer({ slide }: { slide: BookSlide }) {
-  const metaEl = (
-    <div className="flex flex-col gap-2 p-5 md:p-6">
-      {slide.series && (
-        <div className="flex items-center justify-between gap-2">
-          <span
-            className="body"
-            style={{ fontWeight: 500, color: "var(--fg)" }}
-          >
-            {slide.series}
-          </span>
-          {slide.seriesPos && (
-            <span
-              className="caption tabular-nums shrink-0"
-              style={{ color: "var(--muted)" }}
-            >
-              book {slide.seriesPos.index} / {slide.seriesPos.total}
-            </span>
-          )}
-        </div>
+function BookSlideRenderer({
+  slide,
+  rankKey,
+}: {
+  slide: BookSlide;
+  rankKey: number;
+}) {
+  const seriesTopline =
+    slide.series
+      ? slide.seriesPos
+        ? `${slide.series.toUpperCase()} · BOOK ${slide.seriesPos.index} OF ${slide.seriesPos.total}`
+        : slide.series.toUpperCase()
+      : null;
+
+  const coverEl = slide.cover ? (
+    <img
+      src={slide.cover}
+      alt={`${slide.title} cover`}
+      className="h-full w-full object-cover rounded-sm"
+      style={{
+        boxShadow: "0 12px 32px rgba(70, 40, 10, 0.15)",
+      }}
+    />
+  ) : (
+    <CoverFallback title={slide.title} />
+  );
+
+  const metaContent = (
+    <>
+      {seriesTopline && (
+        <p
+          className="truncate"
+          style={{
+            fontFamily: "var(--font-bricolage)",
+            fontWeight: 500,
+            fontSize: "0.6875rem",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "var(--muted)",
+          }}
+        >
+          {seriesTopline}
+        </p>
       )}
       <p
         style={{
           fontFamily: "var(--font-bricolage)",
           fontWeight: 700,
           fontSize: "1.75rem",
+          lineHeight: 1.15,
           color: "var(--fg)",
-          lineHeight: 1.2,
+          marginTop: "0.5rem",
         }}
       >
         {slide.title}
       </p>
-      <p className="body" style={{ color: "var(--muted)" }}>
+      <p className="body" style={{ color: "var(--muted)", marginTop: "0.25rem" }}>
         {slide.author}
       </p>
-      <div className="mt-2">
-        <Stars count={slide.stars} />
+      <div
+        className="flex items-baseline gap-2"
+        style={{ marginTop: "1.25rem" }}
+        aria-label={`Rated ${slide.rating} out of 10`}
+      >
+        <Star
+          size={20}
+          className="self-center"
+          style={{ color: "var(--accent)", fill: "var(--accent)" }}
+          aria-hidden
+        />
+        <span
+          aria-hidden
+          style={{
+            fontFamily: "var(--font-bricolage)",
+            fontWeight: 600,
+            fontSize: "1.75rem",
+            fontVariantNumeric: "tabular-nums",
+            color: "var(--fg)",
+          }}
+        >
+          {slide.rating}
+        </span>
+        <span
+          aria-hidden
+          className="body"
+          style={{ color: "var(--muted)", opacity: 0.7, fontSize: "1rem" }}
+        >
+          /10
+        </span>
       </div>
-    </div>
+    </>
   );
 
   return (
     <>
-      {/* Desktop: flex-row */}
-      <div className="hidden h-full w-full md:flex md:flex-row md:items-start">
-        <div className="h-full shrink-0" style={{ width: "40%" }}>
-          {slide.cover ? (
-            <img
-              src={slide.cover}
-              alt={`${slide.title} cover`}
-              className="h-full w-full object-cover rounded-sm"
-            />
-          ) : (
-            <CoverFallback title={slide.title} />
-          )}
+      {/* Desktop: three-column grid: rank / cover / meta */}
+      <div
+        className="hidden md:grid h-full w-full"
+        style={{ gridTemplateColumns: "28% 32% 40%" }}
+      >
+        {/* Column 1: Rank hero */}
+        <div
+          key={rankKey}
+          className="flex flex-col items-center justify-center"
+          role="img"
+          aria-label={`Rank ${slide.rank} out of 10`}
+          style={{ padding: "1.5rem 0" }}
+        >
+          <span
+            aria-hidden
+            style={{
+              fontFamily: "var(--font-bricolage)",
+              fontWeight: 500,
+              fontSize: "0.75rem",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "var(--accent)",
+              marginBottom: "0.5rem",
+              display: "block",
+              textAlign: "center",
+            }}
+          >
+            {"№"}
+          </span>
+          <span
+            aria-hidden
+            className="rank-numeral"
+            style={{
+              fontFamily: "var(--font-bricolage)",
+              fontWeight: 900,
+              fontSize: "clamp(6rem, 12vw, 10rem)",
+              fontVariantNumeric: "tabular-nums",
+              letterSpacing: "-0.04em",
+              lineHeight: 0.9,
+              color: "var(--fg)",
+              display: "block",
+              textAlign: "center",
+            }}
+          >
+            {slide.rank}
+          </span>
+          <div
+            aria-hidden
+            style={{
+              width: 48,
+              height: 1,
+              background: "var(--border)",
+              margin: "0.75rem auto",
+            }}
+          />
+          <span
+            aria-hidden
+            style={{
+              fontFamily: "var(--font-bricolage)",
+              fontWeight: 700,
+              fontSize: "2.5rem",
+              fontVariantNumeric: "tabular-nums",
+              color: "var(--fg)",
+              opacity: 0.35,
+              display: "block",
+              textAlign: "center",
+            }}
+          >
+            10
+          </span>
         </div>
-        <div className="flex-1 overflow-auto">{metaEl}</div>
+
+        {/* Column 2: Cover */}
+        <div className="h-full overflow-hidden">
+          {coverEl}
+        </div>
+
+        {/* Column 3: Meta */}
+        <div
+          className="flex flex-col justify-center overflow-auto"
+          style={{ paddingLeft: "24px", paddingRight: "1rem", paddingTop: "1rem", paddingBottom: "1rem" }}
+        >
+          {metaContent}
+        </div>
       </div>
 
-      {/* Mobile: flex-col */}
+      {/* Mobile: stacked layout */}
       <div
         className="flex h-full w-full flex-col md:hidden"
         style={{ background: "var(--bg)" }}
       >
+        {/* Mobile rank line above cover */}
+        <div
+          className="flex items-baseline gap-1.5"
+          style={{ padding: "0.75rem 1.25rem 0.75rem" }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-bricolage)",
+              fontWeight: 500,
+              fontSize: "0.75rem",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "var(--muted)",
+            }}
+          >
+            {"№"}
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--font-bricolage)",
+              fontWeight: 700,
+              fontSize: "1rem",
+              color: "var(--fg)",
+            }}
+          >
+            {slide.rank}
+          </span>
+        </div>
+
+        {/* Cover */}
         <div className="max-h-80 overflow-hidden">
           {slide.cover ? (
             <img
               src={slide.cover}
               alt={`${slide.title} cover`}
               className="w-full object-contain"
-              style={{ maxHeight: "320px" }}
+              style={{
+                maxHeight: "320px",
+                boxShadow: "0 12px 32px rgba(70, 40, 10, 0.15)",
+              }}
             />
           ) : (
             <div style={{ height: "200px" }}>
@@ -378,7 +502,11 @@ function BookSlideRenderer({ slide }: { slide: BookSlide }) {
             </div>
           )}
         </div>
-        {metaEl}
+
+        {/* Meta */}
+        <div style={{ padding: "20px" }}>
+          {metaContent}
+        </div>
       </div>
     </>
   );
@@ -449,15 +577,50 @@ function ArrowButton({
 }
 
 /* ------------------------------------------------------------------ */
+/* Dot paginator (books)                                                */
+/* ------------------------------------------------------------------ */
+
+function DotPaginator({
+  total,
+  current,
+}: {
+  total: number;
+  current: number;
+}) {
+  return (
+    <div
+      className="flex items-center gap-[6px]"
+      aria-label={`Slide ${current + 1} of ${total}`}
+    >
+      {Array.from({ length: total }).map((_, i) => (
+        <div
+          key={i}
+          aria-hidden
+          style={{
+            width: 6,
+            height: 6,
+            borderRadius: "50%",
+            background: i === current ? "var(--fg)" : "var(--border)",
+            flexShrink: 0,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Main carousel                                                        */
 /* ------------------------------------------------------------------ */
 
 export function SectionCarousel({
   slides,
   label,
+  paginator,
 }: {
   slides: Slide[];
   label: string;
+  paginator?: "bar" | "dots";
 }) {
   const [current, setCurrent] = useState(0);
   const total = slides.length;
@@ -468,6 +631,7 @@ export function SectionCarousel({
 
   const slide = slides[current];
   const isBook = slide.kind === "book";
+  const useDots = paginator === "dots";
 
   const renderSlide = () => {
     switch (slide.kind) {
@@ -478,7 +642,7 @@ export function SectionCarousel({
       case "stats":
         return <StatsSlideRenderer slide={slide} />;
       case "book":
-        return <BookSlideRenderer slide={slide} />;
+        return <BookSlideRenderer slide={slide} rankKey={current} />;
     }
   };
 
@@ -555,31 +719,37 @@ export function SectionCarousel({
         </div>
       </div>
 
-      {/* Progress bar */}
+      {/* Progress bar / dot paginator */}
       <div className="mt-4 flex items-center gap-3">
-        <div
-          className="relative flex-1"
-          style={{ height: 1, background: "var(--fg)" }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              height: 1,
-              width: `${((current + 1) / total) * 100}%`,
-              background: "var(--accent)",
-              transition: "width 240ms ease",
-            }}
-          />
-        </div>
-        <span
-          className="caption tabular-nums shrink-0"
-          style={{ color: "var(--muted)" }}
-          aria-label={`Slide ${current + 1} of ${total}`}
-        >
-          {current + 1} / {total}
-        </span>
+        {useDots ? (
+          <DotPaginator total={total} current={current} />
+        ) : (
+          <>
+            <div
+              className="relative flex-1"
+              style={{ height: 1, background: "var(--fg)" }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                  height: 1,
+                  width: `${((current + 1) / total) * 100}%`,
+                  background: "var(--accent)",
+                  transition: "width 240ms ease",
+                }}
+              />
+            </div>
+            <span
+              className="caption tabular-nums shrink-0"
+              style={{ color: "var(--muted)" }}
+              aria-label={`Slide ${current + 1} of ${total}`}
+            >
+              {current + 1} / {total}
+            </span>
+          </>
+        )}
       </div>
     </div>
   );

@@ -3,11 +3,10 @@ import { BasketballSection } from "@/components/personal/sections/basketball";
 import { GolfSection } from "@/components/personal/sections/golf";
 import { LibrarySection } from "@/components/personal/sections/library";
 import { FitnessSection } from "@/components/personal/sections/fitness";
+import { MusicSection } from "@/components/personal/sections/music";
 import { NowStrip } from "@/components/personal/now-strip";
 import { Guestbook } from "@/components/personal/guestbook";
 import { ThreadsButton } from "@/components/personal/threads-button";
-import { MusicEmptyState } from "@/components/personal/music-empty-state";
-import { SectionDivider } from "@/components/personal/section-divider";
 import { SectionNav } from "@/components/personal/section-nav";
 
 export default function PersonalPage() {
@@ -27,14 +26,7 @@ export default function PersonalPage() {
       <GolfSection />
       <LibrarySection />
       <FitnessSection />
-
-      {/* Music: quiet divider + empty state */}
-      <div id="music">
-        <SectionDivider name="Music." tone="quiet" />
-        <div className="mx-auto max-w-[1400px] px-4 pb-20 sm:px-6 lg:px-8">
-          <MusicEmptyState />
-        </div>
-      </div>
+      <MusicSection />
 
       <NowStrip />
       <Guestbook />

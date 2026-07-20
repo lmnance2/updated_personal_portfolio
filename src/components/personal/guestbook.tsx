@@ -18,6 +18,7 @@ type Entry = {
 
 type ErrorCode =
   | "profanity"
+  | "toxic"
   | "rate_limit"
   | "too_long"
   | "empty"
@@ -26,6 +27,7 @@ type ErrorCode =
 
 const ERROR_MESSAGES: Record<Exclude<ErrorCode, null>, string> = {
   profanity: "· Cool it on the trash talk.",
+  toxic: "· Your entry was not accepted.",
   rate_limit: "· One a day. Try again tomorrow.",
   too_long: "· That's a paragraph. 240 max.",
   empty: "· Say something.",
@@ -35,6 +37,7 @@ const ERROR_MESSAGES: Record<Exclude<ErrorCode, null>, string> = {
 function resolveError(code: string | null): ErrorCode {
   if (!code) return null;
   if (code === "profanity") return "profanity";
+  if (code === "toxic") return "toxic";
   if (code === "rate_limit") return "rate_limit";
   if (code === "too_long") return "too_long";
   if (code === "empty") return "empty";

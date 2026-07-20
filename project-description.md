@@ -25,7 +25,7 @@ The product goals (from `CLAUDE.md`) are: present a strong undergrad CS student,
 | Font                    | **Bricolage Grotesque** (Google Fonts, with `opsz` + `wdth` axes)             |
 | Server state            | Next.js Route Handlers with `revalidate` caching                              |
 | Persistence (guestbook) | **Vercel KV** in prod; file-backed JSON in `.data/` for dev                   |
-| Profanity filter        | `bad-words` (lazy-loaded optional peer dep)                                   |
+| Profanity filter        | `bad-words` (lazy) + local `@xenova/transformers` running `Xenova/toxic-bert` |
 | Media pipeline          | `sharp`, `heic-convert`, `ffmpeg-static` + `fluent-ffmpeg` via `tsx` scripts  |
 | Linting                 | ESLint 9 (`eslint-config-next`)                                               |
 | Deployment              | Vercel-ready vanilla Next.js project                                          |
@@ -91,7 +91,7 @@ The palette is light-mode only and intentionally "cream paper + terracotta + mus
 - A global `*:focus-visible` rule: 2px solid ring, 2px offset, never `outline: none`.
 - `::selection` colored with the accent.
 
-Custom keyframes: `.spin-slow` (30s linear infinite, pauses on hover) used by the homepage rotating year, and `.chip-underline` / `.chip-underline.lit` for the skill-graph hover-link relationship.
+Custom keyframes: `.spin-slow` (30s linear infinite, pauses on hover) used by the homepage rotating year, `.chip-underline` / `.chip-underline.lit` for the skill-graph hover-link relationship, `bubbleEnter` for the stats slide floating bubbles, and `rankFadeIn` for the book slide rank numeral entrance (200ms ease-out-quart, wrapped in `prefers-reduced-motion: no-preference`).
 
 ## 5. App Router pages
 
@@ -112,7 +112,7 @@ A six-section vertical: sub-nav, page header (with a "Download resume.pdf" pill)
 
 ### `src/app/personal/page.tsx` — Personal
 
-The new v2 layout: a header ("Off the clock."), then five `Section` components (`Tennis`, `Basketball`, `Golf`, `Library`, `Fitness`), a quiet `SectionDivider` + `MusicEmptyState` for music, then `<NowStrip />`, `<Guestbook />`, and `<ThreadsButton />`. Each section uses a `<SectionCarousel />` that lets a visitor click left/right through videos, images, fact tiles, and (in the library) book cards.
+The new v2 layout: a header ("Off the clock."), then six `Section` components (`Tennis`, `Basketball`, `Golf`, `Library`, `Fitness`, `Music`), then `<NowStrip />`, `<Guestbook />`, and `<ThreadsButton />`. Each sports/library/fitness section uses a `<SectionCarousel />` for slide-through content; the music section uses a custom card grid layout.
 
 ### `src/app/not-found.tsx` — 404
 
@@ -124,7 +124,7 @@ A friendly 404 with an interactive `<BasketballToy />` (a hand-rolled `requestAn
 | ---------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/api/github`          | GET        | Aggregates public GitHub PushEvents for `SITE.github` into a 7-day commits-per-day sparkline. `revalidate = 86400` (24h). Falls back to a static series on failure. |
 | `/api/feed`            | GET        | Returns a static array of rotating "now in the feed" items (NBA series, Wordle streak, weather, etc.). 24h revalidate.                                              |
-| `/api/guestbook`       | GET / POST | Lists or creates guestbook entries. POST runs profanity check (`bad-words`) and per-IP rate-limit (1 / 24h).                                                        |
+| `/api/guestbook`       | GET / POST | Lists or creates guestbook entries. POST runs `bad-words` profanity check, a local `Xenova/toxic-bert` toxicity classifier (thresholds per label; graceful no-op if the model is unavailable), and per-IP rate-limit (1 / 24h). |
 | `/api/guestbook/admin` | DELETE     | Token-protected delete-by-id. Reads `GUESTBOOK_ADMIN_TOKEN` from env; returns 503 if unset.                                                                         |
 | `/api/guestbook/test`  | GET        | Diagnostics: which store backend (`kv` vs `file`) and entry count.                                                                                                  |
 
@@ -182,7 +182,7 @@ Two-column block: Education (school, major, GPA, expected grad, coursework join)
 
 ### `personal/section-divider.tsx` — `SectionDivider`
 
-A title-only slide that creates the breathing room between threads. `tone` ∈ `opener` (60vh padding-bottom) / `standard` (36vh) / `quiet` (20vh). Renders the section title in giant Bricolage.
+A title-only slide that creates the breathing room between threads. `tone` in `opener` (60vh padding-bottom) / `standard` (36vh) / `quiet` (20vh). Renders the section title in giant Bricolage.
 
 ### `personal/section-carousel.tsx` — `SectionCarousel`
 
@@ -191,9 +191,9 @@ The unified slide widget used by every personal section. Supports four slide kin
 - `VideoSlide` — `<video controls playsInline preload="metadata">` whose `src` is appended with `#t=0.001` so browsers render the first frame as the natural poster. Wrapper has a dark `var(--fg)` letterbox; `<video>` uses `object-contain` so portrait clips are not cropped. Optional caption overlay.
 - `ImageSlide` — `<img>` with `object-contain` and the same dark letterbox wrapper, so tall portrait images render in full.
 - `StatsSlide` — a single "floating bubbles" composition that combines all of a section's stats. Hero bubble (index 0) is drenched terracotta with cream text; satellites are cream paper with an ink hairline border. Bubbles are absolutely positioned with editorial asymmetry (2-, 3-, and 4-bubble layouts), sized via `clamp()`, and animated in with a staggered 480ms `bubbleEnter` keyframe (defined in `globals.css`). Hover lifts the shadow and adds a `var(--accent)` outline ring. Long emphasis values auto-scale font size and use `white-space: nowrap` on satellites to keep "295 lb" / "Age 18" on one line. Background includes a single oversized hairline outline circle peeking from the top-right corner for editorial layering.
-- `BookSlide` — book cover + metadata (title, author, series with `book N / total`, custom SVG stars). Responsive: desktop is flex-row with cover at 40% width; mobile is flex-col with the cover capped at 320px.
+- `BookSlide` — three-column editorial layout (desktop): 28% rank hero / 32% cover / 40% meta. The rank hero shows the numero glyph, a giant rank numeral (`clamp(6rem, 12vw, 10rem)`) in weight 900, a hairline rule, and "10" at 35% opacity as denominator. The rank numeral fades in (200ms ease-out-quart) on slide change via CSS `rankFadeIn` keyframe triggered by React `key` remount. Cover gets a warm drop shadow. Meta shows series topline (uppercase, dot-separated with book position), title, author, and an inline star-plus-rating (Lucide Star filled, numeric in Bricolage weight 600 at 1.75rem, "/10" in body muted). Mobile omits the giant fraction and instead shows a compact "No 3" rank line above the cover. Full ARIA wiring on rank container and rating element.
 
-Navigation: prev/next chevron buttons on desktop sides, below the slide on mobile, plus left/right arrow keys when the carousel region is focused. A progress bar tracks current / total. Includes accessibility wiring (`role="region"`, `aria-roledescription="carousel"`, `aria-live="polite"`).
+Navigation: prev/next chevron buttons on desktop sides, below the slide on mobile, plus left/right arrow keys when the carousel region is focused. Two paginator modes: a horizontal progress bar (default, used by non-book sections) or dot segments (6px circles, filled/unfilled) selected via an optional `paginator="dots"` prop. Includes accessibility wiring (`role="region"`, `aria-roledescription="carousel"`, `aria-live="polite"`).
 
 ### `personal/sections/tennis.tsx` — `TennisSection`
 
@@ -209,15 +209,15 @@ Two golf videos (first-frame previews) and one stats slide with Handicap 15.1 an
 
 ### `personal/sections/library.tsx` — `LibrarySection`
 
-26 `BookSlide` entries: the full Stormlight Archive, all of Wheel of Time (with `New Spring` last), the first two Mistborn books, Warbreaker, and the Red Rising trilogy — each with author, series, position in series, and a star rating.
+**Top 10 Books redesign (2026-07-03).** The section is now titled "Ten I'd Reread" with a subtitle "Counting down to the one." The `BookSlide` type has replaced `stars: 0-5` with `rank: number` (1-10) and `rating: number` (0-10). The 10 active books are assigned ranks 10 down to 1 (first slide = rank 10, last = rank 1), with ratings in the 7.5-10 range and Morning Star (rank 1) receiving a 10/10. The carousel uses `paginator="dots"` for dot-segment navigation. The commented-out bonus books are preserved in place.
 
 ### `personal/sections/fitness.tsx` — `FitnessSection`
 
 A 275-lb lift video, the mile-run photo, and one stats slide combining Fastest mile 5:39, Bench 295 lb, Squat 365 lb, and Deadlift 365 lb.
 
-### `personal/music-empty-state.tsx` — `MusicEmptyState`
+### `personal/sections/music.tsx` — `MusicSection`
 
-Placeholder card: "A playlist of favorites lives here soon." Used because the music thread is intentionally empty in v2 (per `changes.md`).
+Statically-curated playlist grid. Defines a local `Track` type (`rank`, `title`, `artist`, `album`, `cover?`) and a `tracks` array of 10 entries. Renders a responsive card grid (`grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5`) where each card is a `<figure>` with a square album art area and a `<figcaption>` body (title in `text-fg`, artist and rank in `text-muted`). The rank-1 card spans 2 columns and has a larger title. When no `cover` is set, the art area shows a warm `from-surface to-spark/40` gradient fallback. Hover lifts cards with `-translate-y-1 shadow-md`. Cover images go in `personal_page_media/music/` and are served from `/personal_page_media/music/<filename>`.
 
 ### `personal/now-strip.tsx` — `NowStrip`
 
@@ -231,7 +231,7 @@ Now a plain server component (no fetches, no rotation, no fallbacks needed).
 
 ### `personal/guestbook.tsx` — `Guestbook`
 
-Form posts `{ message, name? }` to `/api/guestbook`. Character counter (240 cap, warns at 220), name optional (40 cap, defaults to "Anonymous"), client-side validation for empty. Error codes from the server are mapped to short copy: `profanity` → "Cool it on the trash talk.", `rate_limit` → "One a day. Try again tomorrow.", `too_long`, `empty`, `network`. Entries render as paper cards (the newest is rotated −1.5° for a tacked-up feel). If the server returns 503 (no store available), shows a "Be the first to sign" empty state.
+Form posts `{ message, name? }` to `/api/guestbook`. Character counter (240 cap, warns at 220), name optional (40 cap, defaults to "Anonymous"), client-side validation for empty. Error codes from the server are mapped to short copy: `profanity` → "Cool it on the trash talk.", `rate_limit` → "One a day. Try again tomorrow.", `too_long`, `empty`, `network`. Entries render as paper cards (the newest is rotated 1.5 degrees for a tacked-up feel). If the server returns 503 (no store available), shows a "Be the first to sign" empty state.
 
 ### `personal/threads-button.tsx` — `ThreadsButton`
 
@@ -293,7 +293,8 @@ No env vars are required for a basic build. Without KV the guestbook degrades to
 
 `changes.md` is Liam's v2 brief — many items are done, some are pending:
 
-- Done: skill graph references every project/experience with a 10-cap (with "N more" expand) — now pulls from the gallery `data/projects.ts` so all 15 projects + 4 experiences are filterable; Annotated Iliad removed, project sheet drawer added (long description + video + chips + GitHub), no dates on project cards, personal page split into discrete tennis / basketball / golf / library / fitness / music sections, each with a click-through carousel, guestbook wired to a real backend with profanity + rate-limit and capped at the latest 5 entries at the API layer, editorial "01 tennis / 02 basketball / …" section nav added to `/personal` (sticky under the site nav, scroll-spy active state, framer-motion `layoutId` underline), party-mode and easter-eggs removed.
+- Done: skill graph references every project/experience with a 10-cap (with "N more" expand) — now pulls from the gallery `data/projects.ts` so all 15 projects + 4 experiences are filterable; Annotated Iliad removed, project sheet drawer added (long description + video + chips + GitHub), no dates on project cards, personal page split into discrete tennis / basketball / golf / library / fitness / music sections, each with a click-through carousel, guestbook wired to a real backend with profanity + rate-limit and capped at the latest 5 entries at the API layer, editorial "01 tennis / 02 basketball / ..." section nav added to `/personal` (sticky under the site nav, scroll-spy active state, framer-motion `layoutId` underline), party-mode and easter-eggs removed, Library section redesigned as "Ten I'd Reread" countdown with rank-as-hero visual (three-column desktop layout, dot paginator, animated rank numeral).
+- Done (post-v2): Music section implemented as a static card grid (`MusicSection`); placeholder tracks are in place — update `tracks` in `src/components/personal/sections/music.tsx` with real favorites and drop cover art into `personal_page_media/music/`.
 - Pending / in flight: live media files in `public/personal/` (the conversion script is in place but the outputs need to be generated for the videos and images), `/Liam_Nance_Resume.pdf` and `/resume.pdf` files dropped into `public/`, book covers fetched into `public/covers/`.
 
 The README and the deleted-file list in `git status` both confirm: the old party-mode (`src/components/party/*`), easter-egg system (`src/components/easter-eggs/*`), project-video/project-card primitives, and photo-essay personal layout were all removed during this rewrite in favor of the carousel-driven layout.

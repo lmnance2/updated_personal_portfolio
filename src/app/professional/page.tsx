@@ -27,12 +27,12 @@ export default function ProfessionalPage() {
         </p>
         <div className="mt-8">
           <a
-            href="/resume.pdf"
+            href="/Liam_Nance_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="ui inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 hover:bg-[var(--bg)]"
           >
-            Download resume.pdf
+            Download Resume
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>

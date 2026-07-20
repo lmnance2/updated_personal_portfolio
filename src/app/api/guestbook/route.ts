@@ -1,11 +1,17 @@
 import { NextResponse } from "next/server";
 import { getEntries, addEntry, checkRateLimit } from "@/lib/guestbook-store";
+import { checkToxicity } from "@/lib/toxicity";
+
+export const runtime = "nodejs";
+export const maxDuration = 30;
 
 const MAX_LEN = 240;
 
+// Flip to `true` to reinstate the one-post-per-IP-per-day guestbook rate limit.
+const RATE_LIMIT_ENABLED = false;
+
 async function getProfanity() {
   try {
-    // @ts-expect-error optional peer dep
     const mod = await import("bad-words");
     type Filter = { isProfane: (s: string) => boolean };
     type Ctor = new () => Filter;
@@ -46,13 +52,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "profanity" }, { status: 400 });
   }
 
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
-    req.headers.get("x-real-ip") ||
-    "anon";
+  const tox = await checkToxicity(name ? `${name}: ${message}` : message);
+  if (!tox.ok) {
+    return NextResponse.json({ error: "toxic" }, { status: 400 });
+  }
 
-  const rl = await checkRateLimit(ip);
-  if (!rl.allowed) return NextResponse.json({ error: "rate_limit" }, { status: 429 });
+  if (RATE_LIMIT_ENABLED) {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      req.headers.get("x-real-ip") ||
+      "anon";
+
+    const rl = await checkRateLimit(ip);
+    if (!rl.allowed) return NextResponse.json({ error: "rate_limit" }, { status: 429 });
+  }
 
   try {
     const entry = await addEntry({ message, name });
