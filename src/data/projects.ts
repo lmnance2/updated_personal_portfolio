@@ -111,6 +111,18 @@ export const PROJECTS: Project[] = [
 
   // Archive
   {
+    slug: "metroguard-anomaly-detection",
+    name: "MetroGuard — Anomaly Detection for Metro Train Compressors",
+    description:
+      "Causal time-series ML pipeline on ~1.5M compressor sensor readings. XGBoost detected an air-leak 9 minutes before failure on held-out data, beating an Isolation Forest baseline.",
+    longDescription:
+      "Engineered a causal time-series ML pipeline on ~1.5M compressor sensor readings (MetroPT-3, 15 channels, 7 months). Produced 129 rolling features (mean, std, min, max, slope over 5/15/60-min horizons) with strict no-leakage causality. Built a custom event-level evaluation harness (PR-AUC, lead time, false-alarms/hour) with chronological train/test splitting to handle ~1000:1 class imbalance. Trained XGBoost to detect a compressor air leak 9 minutes before failure on held-out data, outperforming an Isolation Forest baseline.",
+    techTags: ["Python", "Pandas", "NumPy", "XGBoost", "scikit-learn"],
+    categories: ["ML", "Research"],
+    githubUrl: gh("Anomaly-Detection-for-Metro-Train-Compressors"),
+    featured: false,
+  },
+  {
     slug: "friendly-fineprint",
     name: "Friendly Fineprint",
     description:
